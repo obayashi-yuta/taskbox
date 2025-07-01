@@ -1,6 +1,5 @@
 <script>
     import { createEventDispatcher } from "svelte";
-
     const dispatch = createEventDispatcher();
 
     // Event handler for the Pin Task
@@ -23,10 +22,50 @@
         title: '',
         state: '',
     };
+
+    // Reactive declaration
+    $: isChecked = task.state === "TASK_ARCHIVED";
 </script>
 
-<div class="list-item">
-    <label for="title" aria-label={task.title}>
-        <input type="text" value={task.title} name="title" readonly />
+<div class="list-item {task.state}">
+    <label
+        for={`checked-${task.id}`}
+        class="checkbox"
+        aria-label={`archiveTask-${task.id}`}
+    >
+        <input
+            type="checkbox"
+            checked={isChecked}
+            disabled
+            name={`checked-${task.id}`}
+            id={`archiveTask-${task.id}`}
+        />
+        <span
+            class="checkbox-custom"
+            role="button"
+            on:click={ArchiveTask}
+            tabindex="-1"
+            aria-label={`archiveTask-${task.id}`}
+        />
     </label>
+    <label for={`title-${task.id}`} aria-label={task.title} class="title">
+        <input
+            type="text"
+            value={task.title}
+            readonly
+            name="title"
+            id={`title-${task.id}`}
+            placeholder="Input title"
+        />
+    </label>
+    {#if task.state !== 'TASK_ARCHIVED'}
+        <button
+            class="pin-button"
+            on:click|preventDefault={PinTask}
+            id={`pinTask-${task.id}`}
+            aria-label={`pinTask-${task.id}`}
+        >
+            <span class="icon-star" />
+        </button>
+    {/if}
 </div>
