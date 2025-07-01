@@ -1,3 +1,5 @@
+import '../src/index.css';
+
 /** @type { import('@storybook/svelte').Preview } */
 const preview = {
   actions: { argTypesRegex: "^on.*" },
