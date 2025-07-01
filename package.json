@@ -22,7 +22,6 @@
     "init-msw": "msw init public/"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^9.0.15",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
