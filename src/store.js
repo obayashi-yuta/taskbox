@@ -35,6 +35,7 @@ const TaskBox = () => {
                 return store;
             });
         },
+        isError: () => update((store) => ({ ...store, error: true })),
     };
 };
 export const taskStore = TaskBox();
